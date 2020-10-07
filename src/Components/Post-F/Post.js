@@ -36,7 +36,7 @@ function Post({username,postID, captions ,user, imageURL}) {
         });
         
         setComment1('')
-       // setComments(comment1)
+       //setComments(comment1)
     
     }
 
