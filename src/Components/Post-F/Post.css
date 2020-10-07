@@ -1,0 +1,92 @@
+.postHeader_Userpic{
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+    padding:5px;
+    margin-left: 15px;
+}
+.post{
+    border-radius: 8px;
+    margin-bottom:40px;
+    margin-left: 10px;
+    border: 1px solid lightgrey;
+    background-color: whitesmoke;
+    max-width:600px;
+    
+    
+}
+.post_comments{
+    padding: 20px;
+    width: 100%;
+}
+
+.post_commentBox{
+    display: flex;
+    margin-top: 10px;
+}
+
+.post_CommentInput{
+    flex: 1;
+    border: none;
+    padding: 10px;
+    border-top: 1px solid lightgray;
+}
+
+.post_CommentButton{
+    cursor: pointer;
+flex: 0;
+border: none;
+border-top: 1px solid lightgray;
+}
+.post_Image{
+    width: 100%;
+    object-fit: contain;
+    min-height: 200px;
+    max-height: 500px;
+    height: 100%;
+    border-bottom: 1px solid lightgrey;
+    border-top: 1px solid lightgrey;
+    background-color: white;
+}
+
+.postStory_text{
+    font-weight: none;
+    padding: 10px;
+}
+
+.postUser_story{
+    padding: 20px;
+}
+
+.postUser_story{
+display: flex;
+}
+
+.post_header{
+    display: flex;
+    padding: 5px;
+    text-align: center;
+}
+.post_header> h1{
+    margin-left: 10px;
+    padding-right: 10px;
+}
+
+@media only screen and (max-width: 650px){
+    .post{
+        min-width: 296px;
+        min-height: 370px;
+        max-width: 370px;
+        width: 100%;
+        margin-left: 0;
+    }
+   
+    .postUser_story{
+        height: fit-content;
+        padding: 15px;
+
+    }
+    .postStory_text{
+        padding: 10px;
+    }
+}
