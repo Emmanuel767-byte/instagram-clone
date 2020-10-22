@@ -7,7 +7,7 @@ import {db} from '../../Fire_base'
 
 function Post({username,postID, captions ,user, imageURL}) {
     const [comments, setComments]= useState([]);
-    const [comment1, setComment1]=useState('')
+    const [Singlecomment, setSingleComment]=useState('')
     
     //     Listener for comments of a specific post Id
     useEffect(() => {
@@ -20,7 +20,7 @@ function Post({username,postID, captions ,user, imageURL}) {
             .orderBy("timestamps", "desc")
             .onSnapshot((snapshot)=>{
                 setComments(snapshot.docs.map((doc)=>doc.data()));
-            })
+            });
         }
         return()=>{
             unsubscribe(); 
@@ -30,13 +30,14 @@ function Post({username,postID, captions ,user, imageURL}) {
     const postComment =(event)=>{
         event.preventDefault();
         db.collection("posts").doc(postID).collection("comments").add({
-            text: comment1,
+            text: Singlecomment,
             username: user?.displayName,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         });
         
-        setComment1('')
-       //setComments(comment1)
+        console.log(Singlecomment);
+        setSingleComment('');
+        
     
     }
 
@@ -56,24 +57,29 @@ function Post({username,postID, captions ,user, imageURL}) {
             </div>
             {/* Comments section */}
             <div className="post_comments">
-                {comments.map((comment1)=>(
+                {comments.map((singlecomment)=>(
+                    
                     <p>
-                        <strong>{comment1?.username}: </strong> {comment1?.text} <br/>
-                <p>{comment1?.timestamp}</p>
+                        <strong>{singlecomment?.username}: </strong> {singlecomment?.text} <br/>
+                <p>{singlecomment?.timestamp}</p>
                     </p>
+                   
+
                 ))}
+                
             </div>
-            {user &&  (
+            
+            {user &&  (// only if a user exist
                     <form className="post_commentBox">
                     <input
                     className="post_CommentInput"
                     type="text"
                     placeholder="Add a comment..."
-                    value={comment1}
-                    onChange={(e)=> setComment1(e.target.value)}/>
+                    value={Singlecomment}
+                    onChange={(e)=> setSingleComment(e.target.value)}/>
                     <button
                     className="post_CommentButton"
-                    disabled={!comment1}
+                    disabled={!Singlecomment}
                     type="submit"
                     onClick={postComment}> Post</button>
                 </form>
